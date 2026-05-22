@@ -16,8 +16,7 @@ const detailMethod = document.getElementById("detailMethod");
 const detailTime = document.getElementById("detailTime");
 const detailDifficulty = document.getElementById("detailDifficulty");
 const detailCategory = document.getElementById("detailCategory");
-
-const categoryButtons = document.querySelectorAll(".category-buttons button");
+const detailNutrition = document.getElementById("detailNutrition");
 
 const uploadForm = document.getElementById("uploadForm");
 const uploadMessage = document.getElementById("uploadMessage");
@@ -29,30 +28,33 @@ const reviewMessage = document.getElementById("reviewMessage");
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
+const categoryButtons = document.querySelectorAll(".category-buttons button");
+
 const recipes = {
     dhal: {
         title: "RED LENTIL & SQUASH DHAL",
         image: "images/dhal.jpg",
         description: "A cheap, filling vegan dhal made with lentils, squash and simple spices.",
         ingredients: [
-            "1 onion, chopped",
+            "1 onion",
             "1 cup red lentils",
-            "2 cups butternut squash, diced",
+            "2 cups butternut squash",
             "1 tin chopped tomatoes",
             "2 tsp curry powder",
             "500ml vegetable stock",
             "1 tbsp oil"
         ],
         method: [
-            "heat oil in a pan and cook the onion until soft",
+            "cook the onion until soft",
             "add curry powder and stir for one minute",
-            "add lentils, squash, tomatoes and vegetable stock",
-            "simmer for 25–30 minutes until the lentils and squash are soft",
+            "add the lentils, squash, chopped tomatoes and vegetable stock",
+            "simmer for 25 to 30 minutes until the lentils and squash are soft",
             "serve with rice or naan"
         ],
         time: "30 minutes",
         difficulty: "easy",
-        category: "vegan"
+        category: "vegan",
+        nutrition: "approx. 350 calories, high fibre, source of protein"
     },
 
     biryani: {
@@ -61,23 +63,24 @@ const recipes = {
         description: "A budget vegetarian rice dish using carrots, spices and simple cupboard ingredients.",
         ingredients: [
             "1 cup rice",
-            "2 carrots, grated or sliced",
-            "1 onion, chopped",
+            "2 carrots",
+            "1 onion",
             "1 handful peas",
             "2 tsp curry powder or biryani spice",
             "500ml vegetable stock",
             "1 tbsp oil"
         ],
         method: [
-            "heat oil in a pan and cook the onion until soft",
+            "cook the onion until soft",
             "add the carrots, peas and spices",
             "stir in the rice and vegetable stock",
-            "cover and simmer for 20–25 minutes until the rice is cooked",
+            "cover and simmer until the rice is cooked",
             "fluff with a fork and serve hot"
         ],
         time: "25 minutes",
         difficulty: "medium",
-        category: "vegetarian"
+        category: "vegetarian",
+        nutrition: "approx. 420 calories, low fat, source of carbohydrates"
     },
 
     rice: {
@@ -85,16 +88,16 @@ const recipes = {
         image: "images/rice.jpg",
         description: "A quick meat-based stir fry using chicken, leek, brown rice and vegetables.",
         ingredients: [
-            "1 chicken breast, sliced",
-            "1 leek, sliced",
+            "1 chicken breast",
+            "1 leek",
             "1 cup cooked brown rice",
-            "1 garlic clove, chopped",
+            "1 garlic clove",
             "1 tbsp soy sauce",
             "1 handful mixed vegetables",
             "1 tbsp oil"
         ],
         method: [
-            "heat oil in a pan and cook the chicken until fully cooked",
+            "cook the chicken until fully cooked",
             "add the leek, garlic and mixed vegetables",
             "stir fry for 5 minutes until the vegetables soften",
             "add the cooked brown rice and soy sauce",
@@ -102,7 +105,59 @@ const recipes = {
         ],
         time: "20 minutes",
         difficulty: "easy",
-        category: "meat"
+        category: "meat",
+        nutrition: "approx. 480 calories, high protein, balanced meal"
+    },
+
+    curry: {
+        title: "VEGETABLE CURRY",
+        image: "images/curry.jpg",
+        description: "A cheap vegetable curry using mixed vegetables, tomatoes and simple spices.",
+        ingredients: [
+            "1 onion",
+            "2 cups mixed vegetables",
+            "1 tin chopped tomatoes",
+            "2 tsp curry powder",
+            "500ml vegetable stock",
+            "1 cup rice",
+            "1 tbsp oil"
+        ],
+        method: [
+            "cook the onion until soft",
+            "add the mixed vegetables and curry powder",
+            "add the chopped tomatoes and vegetable stock",
+            "simmer for 20 minutes until the vegetables are cooked",
+            "serve with rice"
+        ],
+        time: "25 minutes",
+        difficulty: "easy",
+        category: "vegan",
+        nutrition: "approx. 410 calories, high fibre, low fat"
+    },
+
+    tuna: {
+        title: "TUNA PASTA BAKE",
+        image: "images/tuna.jpg",
+        description: "A filling student pasta bake using tuna, pasta, tomato sauce and cheese.",
+        ingredients: [
+            "2 cups pasta",
+            "1 tin tuna",
+            "1 cup tomato sauce",
+            "1 handful grated cheese",
+            "1 tsp mixed herbs",
+            "1 tbsp oil"
+        ],
+        method: [
+            "cook the pasta until soft",
+            "mix the tuna with tomato sauce and herbs",
+            "combine the pasta with the tuna mixture",
+            "add grated cheese on top",
+            "bake for 15 minutes until golden"
+        ],
+        time: "35 minutes",
+        difficulty: "medium",
+        category: "meat",
+        nutrition: "approx. 520 calories, high protein, filling meal"
     }
 };
 
@@ -122,6 +177,7 @@ function createRecipeCard(recipeKey, recipe){
             <p><strong>Category:</strong> ${recipe.category}</p>
             <p><strong>Difficulty:</strong> ${recipe.difficulty}</p>
             <p><strong>Cooking time:</strong> ${recipe.time}</p>
+            <p><strong>Nutrition:</strong> ${recipe.nutrition}</p>
             <button class="view-recipe-btn">View Recipe</button>
         </div>
     `;
@@ -161,6 +217,7 @@ function runSearch(){
             recipe.category,
             recipe.difficulty,
             recipe.time,
+            recipe.nutrition,
             recipe.ingredients.join(" "),
             recipe.method.join(" ")
         ].join(" ").toLowerCase();
@@ -183,9 +240,11 @@ function showRecipeDetails(recipeKey){
     detailImage.src = recipe.image;
     detailImage.alt = recipe.title.toLowerCase();
     detailDescription.textContent = recipe.description;
+
     detailTime.textContent = recipe.time;
     detailDifficulty.textContent = recipe.difficulty;
     detailCategory.textContent = recipe.category;
+    detailNutrition.textContent = recipe.nutrition;
 
     detailIngredients.innerHTML = "";
     detailMethod.innerHTML = "";
@@ -216,9 +275,9 @@ recipeGrid.addEventListener("click", function(event){
     if(button){
         const card = button.closest(".recipe-card");
         const recipeKey = card.getAttribute("data-recipe");
+
         showRecipeDetails(recipeKey);
     }
-
 });
 
 searchButton.addEventListener("click", runSearch);
@@ -233,10 +292,12 @@ categoryFilter.addEventListener("change", runSearch);
 difficultyFilter.addEventListener("change", runSearch);
 
 resetButton.addEventListener("click", function(){
+
     searchInput.value = "";
     categoryFilter.value = "all";
     difficultyFilter.value = "all";
     recipeDetails.style.display = "none";
+
     displayRecipes(Object.keys(recipes));
 });
 
@@ -250,9 +311,7 @@ categoryButtons.forEach(function(button){
         document.getElementById("browse").scrollIntoView({
             behavior: "smooth"
         });
-
     });
-
 });
 
 uploadForm.addEventListener("submit", function(event){
@@ -264,11 +323,12 @@ uploadForm.addEventListener("submit", function(event){
     const ingredientsText = document.getElementById("recipeIngredients").value.trim();
     const methodText = document.getElementById("recipeMethod").value.trim();
     const time = document.getElementById("recipeTime").value.trim();
+    const nutrition = document.getElementById("recipeNutrition").value.trim();
     const category = document.getElementById("recipeCategory").value;
     const difficulty = document.getElementById("recipeDifficulty").value;
     const imageInput = document.getElementById("recipeImageUpload");
 
-    if(title === "" || description === "" || ingredientsText === "" || methodText === "" || time === "" || category === "" || difficulty === ""){
+    if(title === "" || description === "" || ingredientsText === "" || methodText === "" || time === "" || nutrition === "" || category === "" || difficulty === ""){
         uploadMessage.textContent = "please complete all fields before submitting.";
         uploadMessage.style.color = "red";
         return;
@@ -296,7 +356,8 @@ uploadForm.addEventListener("submit", function(event){
         }),
         time: time,
         difficulty: difficulty,
-        category: category
+        category: category,
+        nutrition: nutrition
     };
 
     uploadMessage.textContent = "recipe uploaded successfully.";
@@ -309,7 +370,6 @@ uploadForm.addEventListener("submit", function(event){
     document.getElementById("browse").scrollIntoView({
         behavior: "smooth"
     });
-
 });
 
 reviewForm.addEventListener("submit", function(event){
@@ -341,7 +401,6 @@ reviewForm.addEventListener("submit", function(event){
     reviewMessage.style.color = "green";
 
     reviewForm.reset();
-
 });
 
 menuBtn.addEventListener("click", function(){

@@ -51,48 +51,7 @@
         <button id="resetButton">Reset</button>
     </section>
 
-    <section class="recipe-grid" id="recipeGrid">
-
-        <article class="recipe-card" data-category="vegan" data-difficulty="easy" data-recipe="dhal">
-            <img src="images/dhal.jpg" alt="red lentil and squash dhal">
-
-            <div class="recipe-info">
-                <h2>RED LENTIL & SQUASH DHAL</h2>
-                <p>A cheap, filling vegan dhal made with lentils, squash and simple spices.</p>
-                <p><strong>Category:</strong> Vegan</p>
-                <p><strong>Difficulty:</strong> Easy</p>
-                <p><strong>Cooking time:</strong> 30 minutes</p>
-                <button class="view-recipe-btn">View Recipe</button>
-            </div>
-        </article>
-
-        <article class="recipe-card" data-category="vegetarian" data-difficulty="medium" data-recipe="biryani">
-            <img src="images/biryani.jpg" alt="carrot biryani">
-
-            <div class="recipe-info">
-                <h2>CARROT BIRYANI</h2>
-                <p>A budget vegetarian rice dish using carrots, spices and simple cupboard ingredients.</p>
-                <p><strong>Category:</strong> Vegetarian</p>
-                <p><strong>Difficulty:</strong> Medium</p>
-                <p><strong>Cooking time:</strong> 25 minutes</p>
-                <button class="view-recipe-btn">View Recipe</button>
-            </div>
-        </article>
-
-        <article class="recipe-card" data-category="meat" data-difficulty="easy" data-recipe="rice">
-            <img src="images/rice.jpg" alt="chicken leek and brown rice stir fry">
-
-            <div class="recipe-info">
-                <h2>CHICKEN, LEEK & BROWN RICE STIR FRY</h2>
-                <p>A quick meat-based stir fry using chicken, leek, brown rice and vegetables.</p>
-                <p><strong>Category:</strong> Meat</p>
-                <p><strong>Difficulty:</strong> Easy</p>
-                <p><strong>Cooking time:</strong> 20 minutes</p>
-                <button class="view-recipe-btn">View Recipe</button>
-            </div>
-        </article>
-
-    </section>
+    <section class="recipe-grid" id="recipeGrid"></section>
 
     <p id="noResults">No recipes found.</p>
 
@@ -112,6 +71,7 @@
         <p><strong>Cooking time:</strong> <span id="detailTime"></span></p>
         <p><strong>Difficulty:</strong> <span id="detailDifficulty"></span></p>
         <p><strong>Category:</strong> <span id="detailCategory"></span></p>
+        <p><strong>Nutrition:</strong> <span id="detailNutrition"></span></p>
     </section>
 
     <section class="categories" id="categories">
@@ -138,6 +98,8 @@
             <textarea id="recipeMethod" placeholder="Method steps separated by full stops"></textarea>
 
             <input type="text" id="recipeTime" placeholder="Cooking time, e.g. 25 minutes">
+
+            <input type="text" id="recipeNutrition" placeholder="Nutrition information, e.g. 400 calories, high protein">
 
             <input type="file" id="recipeImageUpload" accept="image/*">
 
