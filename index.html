@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Spoon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h1 class="logo">STUDENT SPOON</h1>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#browse">BROWSE</a></li>
+            <li><a href="#upload">UPLOAD</a></li>
+            <li><a href="#categories">CATEGORY</a></li>
+            <li><a href="#reviews">REVIEWS</a></li>
+        </ul>
+
+        <button class="menu-btn" id="menuBtn">☰</button>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <h2>Affordable Recipes for Students</h2>
+        <p>Discover quick, simple and budget-friendly meals shared by students.</p>
+        <a href="#browse" class="hero-btn">Browse Recipes</a>
+    </section>
+
+    <section class="search-section" id="browse">
+        <input type="text" id="searchInput" placeholder="Search recipes...">
+
+        <select id="categoryFilter">
+            <option value="all">All categories</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="meat">Meat</option>
+        </select>
+
+        <select id="difficultyFilter">
+            <option value="all">All difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+        </select>
+
+        <button id="searchButton">Search</button>
+        <button id="resetButton">Reset</button>
+    </section>
+
+    <section class="recipe-grid" id="recipeGrid">
+
+        <article class="recipe-card" data-category="vegan" data-difficulty="easy" data-recipe="dhal">
+            <img src="images/dhal.jpg" alt="red lentil and squash dhal">
+
+            <div class="recipe-info">
+                <h2>RED LENTIL & SQUASH DHAL</h2>
+                <p>A cheap, filling vegan dhal made with lentils, squash and simple spices.</p>
+                <p><strong>Category:</strong> Vegan</p>
+                <p><strong>Difficulty:</strong> Easy</p>
+                <p><strong>Cooking time:</strong> 30 minutes</p>
+                <button class="view-recipe-btn">View Recipe</button>
+            </div>
+        </article>
+
+        <article class="recipe-card" data-category="vegetarian" data-difficulty="medium" data-recipe="biryani">
+            <img src="images/biryani.jpg" alt="carrot biryani">
+
+            <div class="recipe-info">
+                <h2>CARROT BIRYANI</h2>
+                <p>A budget vegetarian rice dish using carrots, spices and simple cupboard ingredients.</p>
+                <p><strong>Category:</strong> Vegetarian</p>
+                <p><strong>Difficulty:</strong> Medium</p>
+                <p><strong>Cooking time:</strong> 25 minutes</p>
+                <button class="view-recipe-btn">View Recipe</button>
+            </div>
+        </article>
+
+        <article class="recipe-card" data-category="meat" data-difficulty="easy" data-recipe="rice">
+            <img src="images/rice.jpg" alt="chicken leek and brown rice stir fry">
+
+            <div class="recipe-info">
+                <h2>CHICKEN, LEEK & BROWN RICE STIR FRY</h2>
+                <p>A quick meat-based stir fry using chicken, leek, brown rice and vegetables.</p>
+                <p><strong>Category:</strong> Meat</p>
+                <p><strong>Difficulty:</strong> Easy</p>
+                <p><strong>Cooking time:</strong> 20 minutes</p>
+                <button class="view-recipe-btn">View Recipe</button>
+            </div>
+        </article>
+
+    </section>
+
+    <p id="noResults">No recipes found.</p>
+
+    <section class="recipe-details" id="recipeDetails">
+        <h2 id="detailTitle">Recipe Details</h2>
+
+        <img id="detailImage" src="images/placeholder.jpg" alt="selected recipe image">
+
+        <p id="detailDescription"></p>
+
+        <h3>Ingredients</h3>
+        <ul id="detailIngredients"></ul>
+
+        <h3>Method</h3>
+        <ol id="detailMethod"></ol>
+
+        <p><strong>Cooking time:</strong> <span id="detailTime"></span></p>
+        <p><strong>Difficulty:</strong> <span id="detailDifficulty"></span></p>
+        <p><strong>Category:</strong> <span id="detailCategory"></span></p>
+    </section>
+
+    <section class="categories" id="categories">
+        <h2>Categories</h2>
+
+        <div class="category-buttons">
+            <button data-category="all">All</button>
+            <button data-category="vegan">Vegan</button>
+            <button data-category="vegetarian">Vegetarian</button>
+            <button data-category="meat">Meat</button>
+        </div>
+    </section>
+
+    <section class="upload-section" id="upload">
+        <h2>Upload a Recipe</h2>
+
+        <form id="uploadForm">
+            <input type="text" id="recipeTitle" placeholder="Recipe title">
+
+            <textarea id="recipeDescription" placeholder="Recipe description"></textarea>
+
+            <input type="text" id="recipeIngredients" placeholder="Ingredients separated by commas">
+
+            <textarea id="recipeMethod" placeholder="Method steps separated by full stops"></textarea>
+
+            <input type="text" id="recipeTime" placeholder="Cooking time, e.g. 25 minutes">
+
+            <input type="file" id="recipeImageUpload" accept="image/*">
+
+            <select id="recipeCategory">
+                <option value="">Select category</option>
+                <option value="vegan">Vegan</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="meat">Meat</option>
+            </select>
+
+            <select id="recipeDifficulty">
+                <option value="">Select difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+            </select>
+
+            <button type="submit">Submit Recipe</button>
+        </form>
+
+        <p id="uploadMessage"></p>
+    </section>
+
+    <section class="reviews-section" id="reviews">
+        <h2>Reviews</h2>
+
+        <form id="reviewForm">
+            <input type="text" id="reviewName" placeholder="Your name">
+
+            <textarea id="reviewText" placeholder="Write your review"></textarea>
+
+            <select id="reviewRating">
+                <option value="">Select rating</option>
+                <option value="⭐">⭐</option>
+                <option value="⭐⭐">⭐⭐</option>
+                <option value="⭐⭐⭐">⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+            </select>
+
+            <button type="submit">Submit Review</button>
+        </form>
+
+        <p id="reviewMessage"></p>
+
+        <div id="reviewList">
+            <div class="review-card">
+                <h3>Alex</h3>
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>Easy to use and useful for finding student meals quickly.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Student Spoon</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
